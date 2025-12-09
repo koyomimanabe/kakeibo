@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エラー - 家計簿</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body class="error-page">
+    <div class="container">
+        <div class="error-container">
+            <h1 class="main-title">最大計劃</h1>
+            <h2 class="error-title">エラー</h2>
+            <p class="error-message"><%= message %></p>
+            <% if (typeof error !== 'undefined' && error.status) { %>
+            <p class="error-status">ステータスコード: <%= error.status %></p>
+            <% } %>
+            <a href="/" class="btn-primary">ホームに戻る</a>
+        </div>
+    </div>
+</body>
+</html>
+

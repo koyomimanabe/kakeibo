@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家計簿 - 詳細</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    
+</head>
+<body class="detail-page">
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">家計</h1>
+            <a href="/dashboard" class="back-link">← ダッシュボードに戻る</a>
+        </header>
+
+        <section class="detail-section">
+            <div class="detail-card">
+                <div class="detail-item">
+                    <div class="detail-label">項目名</div>
+                    <div class="detail-value"><%= item.event %></div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">金額</div>
+                    <div class="detail-value amount <%= item.type.toLowerCase() %>">
+                        <%= item.type === 'Income' ? '+' : '-' %>¥<%= parseInt(item.amount).toLocaleString() %>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">収支区分</div>
+                    <div class="detail-value">
+                        <span class="item-type <%= item.type.toLowerCase() %>">
+                            <%= item.type === 'Income' ? '収入' : '支出' %>
+                        </span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">日付</div>
+                    <div class="detail-value">
+                        <%= new Date(item.createdAt).toLocaleString('ja-JP', { 
+                            year: 'numeric', 
+                            month: '2-digit', 
+                            day: '2-digit',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        }) %>
+                    </div>
+                </div>
+                <% if (item.memo) { %>
+                <div class="detail-item">
+                    <div class="detail-label">メモ</div>
+                    <div class="detail-value"><%= item.memo %></div>
+                </div>
+                <% } %>
+                <div class="form-actions" style="margin-top: 30px;">
+                    <button class="btn-primary" onclick="editItem(<%= item.id %>)">編集</button>
+                    <button class="btn-secondary" onclick="deleteItem(<%= item.id %>)">削除</button>
+                    <button class="btn-secondary" onclick="window.location.href='/dashboard'">戻る</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="/javascripts/detail.js"></script>
+</body>
+</html>
+
